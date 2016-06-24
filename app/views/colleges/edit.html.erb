@@ -1,0 +1,18 @@
+<%if false%>
+<% if @college.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@college.errors.count, "error") %> <%=t("automatic_reports.error_saving_auto_report")%></h2>
+
+		<ul>
+			<% @college.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<%end%>
+<%= form_for :college,url: {action: "update", controller: "colleges"}, method:"put"  do |k| %>
+		College's_Name: <%=k.text_field :name%><br />
+		Year: <%=k.text_field :year%><br />
+		<%=k.submit%>
+<% end %>

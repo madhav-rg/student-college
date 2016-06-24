@@ -1,0 +1,5 @@
+<%= form_for :college, url: {action: "create"}, method: "post"  do |k| %>
+		Name: <%=k.text_field :name%><br />
+		Year: <%=k.text_field :year%><br />
+		<%=k.submit%>
+<% end %>

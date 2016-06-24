@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+tr:nth-child(even) {background-color: #ffcc99}
+</style>
+</head>
+<body>
+	<table style="width:100%">
+	<caption><font size = 5 >Students Data</font></caption>
+		<tr bgcolor="ff4d4d">
+			<td>ID</td><td>T_ID</td><td>IDENTITY_NO</td><td>DEPARTMENT</td><td>MATHS</td><td>PHYSICS</td><td>CHEMISTRY</td><td>YEAR</td><td>COLLEGE_ID</td><td>EXT_SID</td><td>EDIT</td><td>DELETE</td>
+		</tr>
+		<%len=@student.size%>
+		<%for i in 0..len-1%>
+			<tr >
+				<td><%= link_to i+1, student_path(@student[i]) %></td>
+				<td><%=@student[i].id%></td>
+				<td><%=@student[i].sid%></td>
+				<td><%=@student[i].dept%></td>
+				<td><%=@student[i].maths%></td>
+				<td><%=@student[i].physics%></td>
+				<td><%=@student[i].chemistry%></td>
+				<td><%=@student[i].year%></td>
+				<td><%=@student[i].college_id%></td>
+				<td><%=@student[i].extended_sid%></td>
+				<td><%= button_to "Edit",edit_student_path(@student[i]),method: :get%></td>
+				<td><%= button_to "delete",student_path(@student[i]), method: :delete %></td>
+			</tr>
+		<%end%>	
+	</table>
+
+
+<%if false%>
+<div>Using these forms is deprecated, as the url's beginning might be changing according to the requirements. I had commented this out PERMANENTLY, so that it will stand as an example.></div>
+
+<form action="http://localhost:3000/student/new">
+    <input type="submit" value="Create_New_Entry">
+</form>
+
+<form action="http://localhost:3000/student/do_queries">
+    <input type="submit" value="Do_Queries">
+</form>
+<%end%>
+
+<br />
+<%=button_to "Create_New_Entry", new_student_path(), method: :get %>
+<br />
+<%=button_to "Do_Queries", do_queries_students_path(), method: :get %>
+
+</body>
+</html>

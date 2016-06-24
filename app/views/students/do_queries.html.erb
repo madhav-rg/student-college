@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<div>Group_by</div>
+<form url: { action = "solution"} > 
+	<select name = "Group_by">
+		<option selectd = "selected" Value="ID">ID</option>
+		<option value="Department">Department</option>
+		<option value="Year">Year</option>
+	</select><br /><br />
+
+	<div>Sort_by</div>
+	<select name = "Sort_by">
+		<option  selected = "selected" value="Maths">Maths</option>
+		<option value="Physics">Physics</option>
+		<option value="Chemistry">Chemistry</option>
+	</select><br /><br />
+
+	<div>Calculate_Difference</div>
+	<select name = "Diff">
+		<option  selected = "selected" value="ID">ID</option>
+		<option value="Department">Department</option>
+	</select><br /><br />
+
+	<div><input type="checkbox" name="Total" value="True">Calculate Total</div><br />
+	<input type="submit" value="Submit">
+</form>
+
+<p><font size="4">Choose options, and click the "Submit" button to send input to the server.</font></p>
+</body>
+</html>

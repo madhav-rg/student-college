@@ -1,0 +1,47 @@
+<%len=@colleges.size%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+tr:nth-child(even) {background-color: #cceeff}
+</style>
+</head>
+
+<body>
+	<table style="width:100%">
+	<caption><font size = 5 >Colleges Data</font></caption>
+		<tr bgcolor="993d00">
+			<td>ID</td><td>T_ID</td><td>NAME</td><td>YEAR</td><td>EDIT</td><td>DELETE</td><td>STUDENTS</td>
+		</tr>
+		<%for i in 0..len-1%>
+			<tr>
+				<td><%= link_to i+1, college_path(@colleges[i]) %></td>
+				<td><%=@colleges[i].id%></td>
+				<td><%=@colleges[i].name%></td>
+				<td><%=@colleges[i].year%></td>
+				<td><%= button_to "Edit",edit_college_path(@colleges[i]),method: :get%></td>
+				<td><%= button_to "delete",college_path(@colleges[i]), method: :delete %></td>
+				<td><%= button_to "Stu_Details",associate_tables_college_path(@colleges[i]), method: :get %></td>
+			</tr>
+		<%end%>	
+	</table>
+</body>
+
+<br />
+<%=button_to "Create_New_Entry", new_college_path(), method: :get %>
+<br />
+<%=button_to "Do_Queries", do_queries_colleges_path(), method: :get %>
+<br />
+<%= form_for :var, url: {action: "search_tag"}, method: "get"  do |k| %>
+	Search_for: <%=k.text_field :name%><br />
+	<%=k.submit%>
+<% end %>
+
+</html>

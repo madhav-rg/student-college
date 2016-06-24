@@ -1,0 +1,43 @@
+<%if false%>
+<div>adsfadfaf</div>
+<div><%=@output%></div>
+<%end%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+<%if @output.size != 0%>
+<body>
+	<table style="width:100%">
+	<caption><font size = 5 color = "green" >Search_Results</font></caption>
+		<tr bgcolor="b3b3b3" >
+			<th>ID</th><th>NAME</th><th>YEAR</th>
+		</tr>
+		<%len = @output.size%>
+		<%for i in 0..len-1%>
+			<tr bgcolor = "b8b894">
+				<td><%=@output[i]["id"]%></td>
+				<td><%=@output[i]["name"]%></td>
+				<td><%=@output[i]["year"]%></td>
+			</tr>
+		<%end%>	
+	</table>
+
+</body>
+<%else%>
+	<div>No College with such Sub String exists.</div>
+<%end%>
+
+<br />
+<%= link_to "Home_Page", { action: :index, controller: :colleges }, method: :get %>
+</html>

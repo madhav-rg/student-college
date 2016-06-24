@@ -1,0 +1,124 @@
+
+<%if false %>
+<%= @final%>
+<%end%>
+<%if false%>
+<div> In case of array of hashes(first table), k[:id], here iteration "assigns" the "name" to each hash in th array, there values can be acessed by name[:id].
+In case of hash, where values are hash or array of hashes, iteration "assigns" the "key" to the hash, then values can be acessed by name[ke][:id].
+ </div>
+<%end%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+
+<body>
+	<table style="width:100%">
+	<caption><font size = 5 color = "green" >Group_by & Sort_by</font></caption>
+		<tr bgcolor="b3b3b3" >
+			<th>ID</th><th>MATHS</th><th>PHYSICS</th><th>CHEMISTRY</th>
+		</tr>
+		<%@sort_hash.each do |k|%>
+			<tr bgcolor = "b8b894">
+				<td><%= k[:id]%></td>
+				<td><%=k[:maths_avg]%></td>
+				<td><%=k[:phys_avg]%></td>
+				<td><%=k[:chemi_avg]%></td>
+			</tr>
+		<%end%>	
+	</table>
+
+</body>
+
+
+<%if @should_compare_val == "ID"  %>
+<br /><br />
+	<body>
+		<table style="width:100%">
+		<caption><font size = 5 color = "green" >Calculate_Difference_by_ID</font></caption>
+			<tr bgcolor="0ea454">
+				<th>ID</th><th>MATHS</th><th>PHYSICS</th><th>CHEMISTRY</th>
+			</tr>
+			<% @final.each do |k,v|%>
+				<tr>
+					<td><%=k.to_i%></td></tr>
+				<% if v.size > 1 %>
+				<tr bgcolor="aeeaae">
+					<td><%=@final[k][0][:year]%></td><td><%=@final[k][0][:Matths]%></td><td><%=@final[k][0][:Physs]%></td><td><%=@final[k][0][:Chemm]%></td></tr>
+				<tr bgcolor="aeeaae">
+						<td><%=@final[k][1][:year]%></td><td><%=@final[k][1][:Matths]%></td><td><%=@final[k][1][:Physs]%></td><td><%=@final[k][1][:Chemm]%></td></tr>
+				<tr bgcolor="aeeaae">
+						<td><%=@final[k][2][:change]%></td><td><%=@final[k][2][:Matths]%></td><td><%=@final[k][2][:Physs]%></td><td><%=@final[k][2][:Chemm]%></td></tr>
+				<%end%>
+			<%end%>
+		</table>
+		
+	</body>
+<%end%>
+<%if @should_compare_val == "Department" %>
+	<br /><br />
+	<body>
+	<table style="width:100%">
+	<caption><font size = 5 color = "green" >Calculate_Difference_by_Department</font></caption>
+		<tr bgcolor="b3b3b3" >
+			<th>DEPARTMET</th><th>MATHS</th><th>PHYSICS</th><th>CHEMISTRY</th>
+		</tr>
+		<%@comp_final.each_key do |k|%>
+		<tr>
+			<td><%=k%></td></tr>
+		<tr bgcolor="aeeaae">
+			<td><%=@comp_pre_year[k][:year]%></td><td><%=@comp_pre_year[k][:maths]%></td><td><%=@comp_pre_year[k][:physics]%></td><td><%=@comp_pre_year[k][:chemistry]%></td></tr>
+		<tr bgcolor="aeeaae">
+			<td><%=@comp_past_year[k][:year]%></td><td><%=@comp_past_year[k][:maths]%></td><td><%=@comp_past_year[k][:physics]%></td><td><%=@comp_past_year[k][:chemistry]%></td></tr>
+		<tr bgcolor="aeeaae">
+			<td><%=@comp_final[k][:change]%></td><td><%=@comp_final[k][:maths]%></td><td><%=@comp_final[k][:physics]%></td><td><%=@comp_final[k][:chemistry]%></td></tr>
+		<%end%>
+	</table>
+
+</body>
+<%end%>
+
+
+<% if @show_total_val %>
+<br /><br />
+	<body>
+		<table style="width:100%">
+		<caption><font size = 5 color = "green" >Total Score</font></caption>
+			<tr>
+				<th>YEAR</th><th>MATHS</th><th>PHYSICS</th><th>CHEMISTRY</th>
+			</tr>
+			<% @total_year_wise.each_key do |k| %>
+				<tr bgcolor="605552">
+				<td><%=@total_year_wise[k][:year]%></td>
+				<td><%=@total_year_wise[k][:maths]%></td>
+				<td><%=@total_year_wise[k][:physics]%></td>
+				<td><%=@total_year_wise[k][:chemistry]%></td>
+				</tr>
+			<%end%>	
+			<tr bgcolor="605552">
+				<td><%=@total_all_years[:year]%></td>
+				<td><%=@total_all_years[:maths]%></td>
+				<td><%=@total_all_years[:physics]%></td>
+				<td><%=@total_all_years[:chemistry]%></td>
+			</tr>
+
+		</table>
+	</body>
+<%end%>
+
+<br />
+<%= link_to "Home_Page", { action: :index, controller: :students }, method: :get %>
+
+</html>
+

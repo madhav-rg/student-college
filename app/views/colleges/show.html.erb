@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+	<table style="width:100%">
+	<caption>College Data</caption>
+		<tr bgcolor="ff1a66">
+			<td>ID</td><td>T_ID</td><td>NAME</td><td>YEAR</td>
+		</tr>
+		
+		<tr >
+			<td>1</td>
+			<td><%=@clg[:id]%></td>
+			<td><%=@clg[:name]%></td>
+			<td><%=@clg[:year]%></td>
+		</tr>
+	</table>
+
+</body>
+
+<br />
+<%= link_to "Home_Page", { action: :index, controller: :colleges }, method: :get %>
+</html>

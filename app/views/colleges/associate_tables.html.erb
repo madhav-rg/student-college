@@ -1,0 +1,49 @@
+<%if false %>
+<%=@answer.size%>
+<%end%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+tr:nth-child(even) {background-color: #008000}
+</style>
+</head>
+<%if @answer.size != 0%>
+	<body>
+		<table style="width:100%">
+		<caption><font size = 5 >Students Data</font></caption>
+			<tr bgcolor="993d00">
+				<td>ID</td><td>T_ID</td><td>IDENTITY_NO</td><td>DEPARTMENT</td><td>MATHS</td><td>PHYSICS</td><td>CHEMISTRY</td><td>YEAR</td><td>COLLEGE_ID</td><td>EXTENDED_SID</td>
+			</tr>
+			<%len=@answer.size%>
+			<%for i in 0..len-1%>
+				<tr >
+					<td><%=i+1%></td>
+					<td><%=@answer[i].id%></td>
+					<td><%=@answer[i].sid%></td>
+					<td><%=@answer[i].dept%></td>
+					<td><%=@answer[i].maths%></td>
+					<td><%=@answer[i].physics%></td>
+					<td><%=@answer[i].chemistry%></td>
+					<td><%=@answer[i].year%></td>
+					<td><%=@answer[i].college_id%></td>
+					<td><%=@answer[i].extended_sid%></td>
+				</tr>
+			<%end%>	
+		</table>
+	</body>
+<%else%>
+	<div>No sutdents are registered for this College.</div>
+<%end%>
+<br />
+<%= link_to "Home_Page", { action: :index, controller: :colleges }, method: :get %>
+
+</html>
